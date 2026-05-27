@@ -84,7 +84,7 @@ The `OpendcodeClient` provides access to all OpenCode HTTP API endpoints:
 
 ## Development
 
-Requires Python 3.13+.
+Requires Python 3.10+.
 
 ```bash
 # Create virtual environment
