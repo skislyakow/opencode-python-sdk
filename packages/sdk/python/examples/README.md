@@ -1,11 +1,12 @@
 # Examples
 
-Requires Python 3.13+ and the SDK installed:
+Requires Python 3.10+ and the SDK installed:
 
 ```bash
 cd packages/sdk/python
-py -3.13 -m venv .venv
-.venv\Scripts\activate
+py -3.13 -m venv .venv            # or python3 -m venv .venv
+.venv\Scripts\activate            # Windows
+# source .venv/bin/activate       # macOS/Linux
 pip install -e .
 ```
 
