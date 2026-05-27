@@ -84,8 +84,19 @@ The `OpendcodeClient` provides access to all OpenCode HTTP API endpoints:
 
 ## Development
 
+Requires Python 3.13+.
+
 ```bash
-# Install dependencies
+# Create virtual environment
+py -3.13 -m venv .venv
+
+# Activate (Windows)
+.venv\Scripts\activate
+
+# Or activate (macOS/Linux)
+# source .venv/bin/activate
+
+# Install dependencies in editable mode
 pip install -e ".[dev]"
 
 # Run tests
