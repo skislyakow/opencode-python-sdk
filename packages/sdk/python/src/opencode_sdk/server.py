@@ -27,6 +27,27 @@ class OpencodeServer:
         return self._proc.poll() is None
 
 
+def _resolve_binary(name: str) -> str:
+    if os.name == "nt" and "." not in name:
+        for ext in (".cmd", ".bat", ".exe"):
+            candidate = name + ext
+            if _which(candidate):
+                return candidate
+    return name
+
+
+def _which(program: str) -> str | None:
+    for path in os.environ.get("PATH", "").split(os.pathsep):
+        full = os.path.join(path, program)
+        if os.path.isfile(full) and os.access(full, os.X_OK):
+            return full
+        if os.name == "nt":
+            full_exe = full + ".exe"
+            if os.path.isfile(full_exe) and os.access(full_exe, os.X_OK):
+                return full_exe
+    return None
+
+
 def create_opencode_server(
     *,
     hostname: str = "127.0.0.1",
@@ -36,7 +57,7 @@ def create_opencode_server(
     opencode_binary: str = "opencode",
 ) -> OpencodeServer:
     args = [
-        opencode_binary,
+        _resolve_binary(opencode_binary),
         "serve",
         f"--hostname={hostname}",
         f"--port={port}",
