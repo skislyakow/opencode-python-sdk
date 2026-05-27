@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from unittest import mock
-
 import httpx
 import pytest
 
@@ -31,7 +29,7 @@ def test_health_success() -> None:
         base_url="http://localhost:9999",
         httpx_client=httpx.Client(
             transport=httpx.MockTransport(
-                lambda req: httpx.Response(200, json={"ok": True})
+                lambda _: httpx.Response(200, json={"ok": True})
             )
         ),
     )
@@ -44,7 +42,7 @@ def test_health_error() -> None:
         base_url="http://localhost:9999",
         httpx_client=httpx.Client(
             transport=httpx.MockTransport(
-                lambda req: httpx.Response(500, json={"message": "internal error"})
+                lambda _: httpx.Response(500, json={"message": "internal error"})
             )
         ),
     )
@@ -71,7 +69,7 @@ def test_session_prompt_wraps_string() -> None:
         base_url="http://localhost:9999",
         httpx_client=httpx.Client(
             transport=httpx.MockTransport(
-                lambda req: httpx.Response(200, json={"result": "ok"}),
+                lambda _: httpx.Response(200, json={"result": "ok"}),
             )
         ),
     )

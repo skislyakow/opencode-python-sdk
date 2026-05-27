@@ -3,12 +3,11 @@ from __future__ import annotations
 import json
 import os
 import subprocess
-import threading
 import time
 from typing import Any, Dict, Optional, Tuple
 
 from opencode_sdk.client import OpencodeClient, create_opencode_client
-from opencode_sdk.process import bind_abort, stop
+from opencode_sdk.process import stop
 
 
 class OpencodeServer:
